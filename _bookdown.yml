@@ -1,0 +1,7 @@
+book_filename: "big-data-cloud-computing"
+language:
+  ui:
+    chapter_name: ""
+new_session: yes
+output_dir: docs
+

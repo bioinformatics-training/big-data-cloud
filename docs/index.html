@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Big Data and Cloud Computing</title>
+  <meta name="description" content="Course materials for Big Data and Cloud Computing">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Big Data and Cloud Computing" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="figures/cover_image.png" />
+  <meta property="og:description" content="Course materials for Big Data and Cloud Computing" />
+  <meta name="github-repo" content="bioinformatics-training/big-data-cloud" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Big Data and Cloud Computing" />
+  
+  <meta name="twitter:description" content="Course materials for Big Data and Cloud Computing" />
+  <meta name="twitter:image" content="figures/cover_image.png" />
+
+<meta name="author" content="Sudhakaran Prabakaran, Nitin Bhore and Matt Wayland">
+
+
+<meta name="date" content="2018-05-28">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="intro.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An Introduction to Machine Learning</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About the course</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview"><i class="fa fa-check"></i><b>1.1</b> Overview</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#registration"><i class="fa fa-check"></i><b>1.2</b> Registration</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.3</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#github"><i class="fa fa-check"></i><b>1.4</b> Github</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.5</b> License</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#contact"><i class="fa fa-check"></i><b>1.6</b> Contact</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#colophon"><i class="fa fa-check"></i><b>1.7</b> Colophon</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#your-account"><i class="fa fa-check"></i><b>2.1</b> Your account</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#navigating-the-platform"><i class="fa fa-check"></i><b>2.2</b> Navigating the platform</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#aws"><i class="fa fa-check"></i><b>2.3</b> AWS</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rosetta-hub.html"><a href="rosetta-hub.html"><i class="fa fa-check"></i><b>3</b> Rosetta Hub</a><ul>
+<li class="chapter" data-level="3.1" data-path="rosetta-hub.html"><a href="rosetta-hub.html#features"><i class="fa fa-check"></i><b>3.1</b> Features</a></li>
+<li class="chapter" data-level="3.2" data-path="rosetta-hub.html"><a href="rosetta-hub.html#your-account-1"><i class="fa fa-check"></i><b>3.2</b> Your account</a></li>
+<li class="chapter" data-level="3.3" data-path="rosetta-hub.html"><a href="rosetta-hub.html#navigating-the-platform-1"><i class="fa fa-check"></i><b>3.3</b> Navigating the platform</a></li>
+<li class="chapter" data-level="3.4" data-path="rosetta-hub.html"><a href="rosetta-hub.html#aws-1"><i class="fa fa-check"></i><b>3.4</b> AWS</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="containers.html"><a href="containers.html"><i class="fa fa-check"></i><b>4</b> Containers</a><ul>
+<li class="chapter" data-level="4.1" data-path="containers.html"><a href="containers.html#launch-a-container"><i class="fa fa-check"></i><b>4.1</b> Launch a container</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="storage.html"><a href="storage.html"><i class="fa fa-check"></i><b>5</b> Storage</a><ul>
+<li class="chapter" data-level="5.1" data-path="storage.html"><a href="storage.html#web-interface"><i class="fa fa-check"></i><b>5.1</b> Web interface</a></li>
+<li class="chapter" data-level="5.2" data-path="storage.html"><a href="storage.html#command-line"><i class="fa fa-check"></i><b>5.2</b> Command line</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="storage.html"><a href="storage.html#aws-command-line-tools"><i class="fa fa-check"></i><b>5.2.1</b> AWS command line tools</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="customizing-containers.html"><a href="customizing-containers.html"><i class="fa fa-check"></i><b>6</b> Customizing containers</a></li>
+<li class="chapter" data-level="7" data-path="formations.html"><a href="formations.html"><i class="fa fa-check"></i><b>7</b> Formations</a></li>
+<li class="chapter" data-level="8" data-path="run-analysis.html"><a href="run-analysis.html"><i class="fa fa-check"></i><b>8</b> Run data analysis</a></li>
+<li class="chapter" data-level="9" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>9</b> Collaboration</a><ul>
+<li class="chapter" data-level="9.1" data-path="collaboration.html"><a href="collaboration.html#real-time-collaboration"><i class="fa fa-check"></i><b>9.1</b> Real time collaboration</a></li>
+<li class="chapter" data-level="9.2" data-path="collaboration.html"><a href="collaboration.html#sharing-images-and-formations"><i class="fa fa-check"></i><b>9.2</b> Sharing images and formations</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Big Data and Cloud Computing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Big Data and Cloud Computing</h1>
+<h4 class="author"><em>Sudhakaran Prabakaran, Nitin Bhore and Matt Wayland</em></h4>
+<h4 class="date"><em>2018-05-28</em></h4>
+</div>
+<div id="about-the-course" class="section level1">
+<h1><span class="header-section-number">1</span> About the course</h1>
+<div id="overview" class="section level2">
+<h2><span class="header-section-number">1.1</span> Overview</h2>
+<p>Recent advances in genomics, proteomics, imaging and other technologies, have resulted in data being generated at a faster rate than they can be meaningfully analysed. In this course we will show you how cloud computing can be used to meet the challenges of storage, management and analysis of big data. The first half of the course will introduce cloud infrastructure technologies. The second half will cover tools for collaborative working, resource management, and creation of workflows. The instructors will demonstrate how they are using cloud computing in their own research.</p>
+<p>N.B. If you sign up for this course, you will be automatically registered for an AWS educate account, which will provide you with sufficient AWS credits to complete the course exercises. If you decide to continue using cloud computing after the course, you will need to either purchase more credits or apply for a grant from programs like: <a href="https://aws.amazon.com/research-credits/">AWS Cloud Credits for Research</a>, <a href="https://www.microsoft.com/en-us/research/academic-program/microsoft-azure-for-research/">Microsoft Azure for Research</a> or <a href="https://cloud.google.com/edu/">Google Cloud Platform Education Grants</a>.</p>
+<p>After this course you should be able to:</p>
+<ul>
+<li>Launch a virtual machine</li>
+<li>Build and deploy Docker containers</li>
+<li>Configure storage</li>
+<li>Create data analysis workflows</li>
+<li>Analyse your own data in the cloud</li>
+</ul>
+<p>During this course you will learn about:</p>
+<ul>
+<li>Cloud infrastructure technologies</li>
+<li>Using containers for reproducible research</li>
+<li>Collaborating in the cloud</li>
+<li>Managing cloud resources</li>
+<li>The hierarchy of cloud services: Infrastructure as a Service (IaaS), Platform as a Service (PaaS), Software as a Service (SaaS).</li>
+</ul>
+</div>
+<div id="registration" class="section level2">
+<h2><span class="header-section-number">1.2</span> Registration</h2>
+<p><a href="https://training.csx.cam.ac.uk/bioinformatics/search?type=events&amp;query=an+introduction+to+machine+learning&amp;x=0&amp;y=0">Bioinformatics Training: An Introduction to Machine Learning</a></p>
+</div>
+<div id="prerequisites" class="section level2">
+<h2><span class="header-section-number">1.3</span> Prerequisites</h2>
+<ul>
+<li>Some familiarity with R would be helpful.</li>
+<li>For an introduction to R see <a href="http://training.csx.cam.ac.uk/bioinformatics/course/bioinfo-rintro/">An Introduction to Solving Biological Problems with R course</a>.</li>
+</ul>
+</div>
+<div id="github" class="section level2">
+<h2><span class="header-section-number">1.4</span> Github</h2>
+<p><a href="https://github.com/bioinformatics-training/intro-machine-learning-2018">bioinformatics-training/intro-machine-learning-2018</a></p>
+</div>
+<div id="license" class="section level2">
+<h2><span class="header-section-number">1.5</span> License</h2>
+<p><a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPL-3</a></p>
+</div>
+<div id="contact" class="section level2">
+<h2><span class="header-section-number">1.6</span> Contact</h2>
+<p>If you have any <strong>comments</strong>, <strong>questions</strong> or <strong>suggestions</strong> about the material, please contact the course instructors: <a href="mailto:wk181x@gmail.com">Sudhakaran Prabakaran</a>, and <a href="mailto:mw283@cam.ac.uk">Matt Wayland</a>.</p>
+</div>
+<div id="colophon" class="section level2">
+<h2><span class="header-section-number">1.7</span> Colophon</h2>
+<p>This book was produced using the <strong>bookdown</strong> package <span class="citation">(Xie <a href="#ref-R-bookdown">2017</a>)</span>, which was built on top of R Markdown and <strong>knitr</strong> <span class="citation">(Xie <a href="#ref-xie2015">2015</a>)</span>.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-bookdown">
+<p>Xie, Yihui. 2017. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://github.com/rstudio/bookdown" class="uri">https://github.com/rstudio/bookdown</a>.</p>
+</div>
+<div id="ref-xie2015">
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/" class="uri">http://yihui.name/knitr/</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bioinformatics-training/intro-machine-learning/edit/master/index.Rmd",
+"text": "Edit"
+},
+"download": ["big-data-cloud-computing.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
