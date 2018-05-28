@@ -38,15 +38,14 @@ During this course you will learn about:
 
 
 ## Registration
-[Bioinformatics Training: An Introduction to Machine Learning](https://training.csx.cam.ac.uk/bioinformatics/search?type=events&query=an+introduction+to+machine+learning&x=0&y=0)
+[Bioinformatics Training: Big Data and Cloud Computing](https://training.cam.ac.uk/bioinformatics/event/2473649)
 
 ## Prerequisites
 
-* Some familiarity with R would be helpful.
-* For an introduction to R see [An Introduction to Solving Biological Problems with R course](http://training.csx.cam.ac.uk/bioinformatics/course/bioinfo-rintro/). 
+* Familiarity with Linux/Unix would be helpful, but not essential
 
 ## Github
-[bioinformatics-training/intro-machine-learning-2018](https://github.com/bioinformatics-training/intro-machine-learning-2018)
+[bioinformatics-training/big-data-cloud](https://github.com/bioinformatics-training/big-data-cloud)
 
 ## License
 [GPL-3](https://www.gnu.org/licenses/gpl-3.0.en.html)
