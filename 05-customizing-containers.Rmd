@@ -1,1 +1,0 @@
-# Customizing containers {#customizing-containers}
