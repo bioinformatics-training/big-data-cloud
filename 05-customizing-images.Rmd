@@ -2,6 +2,11 @@
 
 ## Introduction
 
+We can customize any of the managed or semi-managed images provided on RosettaHUB, by installing additional software, adding data or making configuration changes. 
+
+
+In Docker terminology, we add [layers](https://docs.docker.com/glossary/?term=layer) to the base image.
+
 For some projects we do not want the overhead of a graphical user interface and do not require all of the tools provided by the managed
 
 

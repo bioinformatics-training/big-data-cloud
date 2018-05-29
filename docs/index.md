@@ -1,6 +1,6 @@
 --- 
 title: "Big Data and Cloud Computing"
-author: "Sudhakaran Prabakaran, Nitin Bhore and Matt Wayland"
+author: "Sudhakaran Prabakaran and Matt Wayland"
 date: "2018-05-29"
 site: bookdown::bookdown_site
 output: bookdown::gitbook

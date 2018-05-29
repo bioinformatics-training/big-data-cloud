@@ -1,6 +1,6 @@
 --- 
 title: "Big Data and Cloud Computing"
-author: "Sudhakaran Prabakaran, Nitin Bhore and Matt Wayland"
+author: "Sudhakaran Prabakaran and Matt Wayland"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
