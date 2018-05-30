@@ -34,6 +34,16 @@ Left clicking on the new bucket (simple storage drive) will take you to the AWS 
 knitr::include_graphics("images/s3_bucket_web_interface.png")
 ```
 
+## Identity and Access Management (IAM)
+
+```{r storageAWSmenu, echo=FALSE, out.width='30%', fig.align='center', fig.cap="AWS menu in Federation Console."}
+knitr::include_graphics("images/aws_menu_RH.png")
+```
+
+
+```{r iamUsers, echo=FALSE, out.width='100%', fig.align='center', fig.cap="IAM users"}
+knitr::include_graphics("images/IAM_users.png")
+```
 
 
 ## Command line

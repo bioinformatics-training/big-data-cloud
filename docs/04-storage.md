@@ -39,6 +39,18 @@ Left clicking on the new bucket (simple storage drive) will take you to the AWS 
 <p class="caption">(\#fig:storageS3BucketWebInterface)S3 bucket web interface.</p>
 </div>
 
+## Identity and Access Management (IAM)
+
+<div class="figure" style="text-align: center">
+<img src="images/aws_menu_RH.png" alt="AWS menu in Federation Console." width="30%" />
+<p class="caption">(\#fig:storageAWSmenu)AWS menu in Federation Console.</p>
+</div>
+
+
+<div class="figure" style="text-align: center">
+<img src="images/IAM_users.png" alt="IAM users" width="100%" />
+<p class="caption">(\#fig:iamUsers)IAM users</p>
+</div>
 
 
 ## Command line
