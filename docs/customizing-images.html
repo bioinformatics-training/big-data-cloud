@@ -25,7 +25,7 @@
 <meta name="author" content="Sudhakaran Prabakaran and Matt Wayland">
 
 
-<meta name="date" content="2018-05-29">
+<meta name="date" content="2018-05-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -99,6 +99,9 @@
 </ul></li>
 <li class="chapter" data-level="6" data-path="customizing-images.html"><a href="customizing-images.html"><i class="fa fa-check"></i><b>6</b> Customizing images</a><ul>
 <li class="chapter" data-level="6.1" data-path="customizing-images.html"><a href="customizing-images.html#introduction"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="customizing-images.html"><a href="customizing-images.html#launch-machine"><i class="fa fa-check"></i><b>6.2</b> Launch machine</a></li>
+<li class="chapter" data-level="6.3" data-path="customizing-images.html"><a href="customizing-images.html#connect-to-machine"><i class="fa fa-check"></i><b>6.3</b> Connect to machine</a></li>
+<li class="chapter" data-level="6.4" data-path="customizing-images.html"><a href="customizing-images.html#configure-server-to-send-e-mail"><i class="fa fa-check"></i><b>6.4</b> Configure server to send e-mail</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="formations.html"><a href="formations.html"><i class="fa fa-check"></i><b>7</b> Formations</a></li>
 <li class="chapter" data-level="8" data-path="run-analysis.html"><a href="run-analysis.html"><i class="fa fa-check"></i><b>8</b> Run data analysis</a></li>
@@ -138,13 +141,86 @@
             <section class="normal" id="section-">
 <div id="customizing-images" class="section level1">
 <h1><span class="header-section-number">6</span> Customizing images</h1>
+<!--
+1. launch ubuntu server (note on setting max spot price high; also increase disk size)
+2. access ubuntu server
+3. copy files using scp
+4. setup ssmtp for e-mail alerts
+5. install R
+  - check version available in ubuntu repository
+  - build R from source and install
+6. install caret and any other R packages needed (doMC, RColorBrewer)
+7. save running container as a new image
+8. shutdown
+9. relaunch and test everything is working
+
+
+-->
 <div id="introduction" class="section level2">
 <h2><span class="header-section-number">6.1</span> Introduction</h2>
-<p>We can customize any of the managed or semi-managed images provided on RosettaHUB, by installing additional software, adding data or making configuration changes.</p>
-<p>In Docker terminology, we add <a href="https://docs.docker.com/glossary/?term=layer">layers</a> to the base image.</p>
+<p>We can customize any of the managed or semi-managed images provided on RosettaHUB, by installing additional software or making other configuration changes. The process is as follows:</p>
+<ol style="list-style-type: decimal">
+<li>launch a RosettaHUB machine</li>
+<li>install additional software and/or make configuration changes</li>
+<li>create a new image from the modified machine</li>
+</ol>
+<p>In Docker terminology, we add a <a href="https://docs.docker.com/glossary/?term=layer">layer</a> to the base image.</p>
 <p>For some projects we do not want the overhead of a graphical user interface and do not require all of the tools provided by the managed</p>
 <p>To create a derived managed image, users have to launch a RosettaHUB machine then create an image from that machine on RosettaHUB. Managed images are configured with Docker containers. Docker containers contain applications for data science such as Pyhton, R, Rstudio, Scala, Sql and notebooks such as Jupyter and Zeppelin.</p>
 <p>We can create derived images from any of these baseline images.</p>
+<p>Explain example</p>
+</div>
+<div id="launch-machine" class="section level2">
+<h2><span class="header-section-number">6.2</span> Launch machine</h2>
+<p>On Federation Console, go to Images section where you will see the following list:</p>
+<p>Right click on Ubuntu Server 16.04 LTS and select ‘Launch’ from the context menu.</p>
+<div class="figure" style="text-align: center"><span id="fig:customManagedImages"></span>
+<img src="images/image_list_icons.png" alt="Managed images available" width="100%" />
+<p class="caption">
+Figure 6.1: Managed images available
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:customLaunchUbuntuServer"></span>
+<img src="images/launch_ubuntu_server_2.png" alt="Launch ubuntu server" width="100%" />
+<p class="caption">
+Figure 6.2: Launch ubuntu server
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:customSessionsFormationsUbuntuServerBase"></span>
+<img src="images/sessions_formations_ubuntu_server_base.png" alt="Ubuntu server container is listed under formations and sessions" width="100%" />
+<p class="caption">
+Figure 6.3: Ubuntu server container is listed under formations and sessions
+</p>
+</div>
+</div>
+<div id="connect-to-machine" class="section level2">
+<h2><span class="header-section-number">6.3</span> Connect to machine</h2>
+<div class="figure" style="text-align: center"><span id="fig:customUbuntuServerBaseContextMenu"></span>
+<img src="images/ubuntu_server_base_session_context_menu.png" alt="Context menu for ubuntu server container" width="50%" />
+<p class="caption">
+Figure 6.4: Context menu for ubuntu server container
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:customUbuntuServerBaseConnectivityInformation"></span>
+<img src="images/ubuntu_server_base_connectivity_information.png" alt="Connectivity information for ubuntu server container" width="100%" />
+<p class="caption">
+Figure 6.5: Connectivity information for ubuntu server container
+</p>
+</div>
+<pre><code>ls -la private-keys-m-e1f0bf55-815b-439b-afae-a157d59facbe-0.pem 
+-rw-rw-rw-@ 1 matt  staff  1674 29 May 20:37 private-keys-m-e1f0bf55-815b-439b-afae-a157d59facbe-0.pem</code></pre>
+<pre><code>chmod 600 private-keys-m-e1f0bf55-815b-439b-afae-a157d59facbe-0.pem</code></pre>
+<pre><code>ssh ubuntu@vm-34-245-226-49.rosettavm.com -i private-keys-m-e1f0bf55-815b-439b-afae-a157d59facbe-0.pem</code></pre>
+</div>
+<div id="configure-server-to-send-e-mail" class="section level2">
+<h2><span class="header-section-number">6.4</span> Configure server to send e-mail</h2>
+<p>secure simple mail transfer protocol</p>
+<p>Update ubuntu repository</p>
+<pre><code>sudo apt-get update</code></pre>
+<p>Install the ssmtp package</p>
+<pre><code>sudo apt-get install ssmtp</code></pre>
+<p>Setup ssmtp by editing the configuration file</p>
+<pre><code>sudo nano /etc/ssmtp/ssmtp.conf</code></pre>
 
 </div>
 </div>

@@ -1,7 +1,7 @@
 --- 
 title: "Big Data and Cloud Computing"
 author: "Sudhakaran Prabakaran and Matt Wayland"
-date: "2018-05-29"
+date: "2018-05-30"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
