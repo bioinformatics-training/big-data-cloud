@@ -125,7 +125,7 @@ s3fs#com-rosettahub-default-bioinfo1.cam /mnt/s3 fuse _netdev,allow_other 0 0
 
 secure simple mail transfer protocol        
 
-Update ubuntu repository
+Update local package cache
 ```
 sudo apt-get update
 ```

@@ -89,8 +89,9 @@
 <li class="chapter" data-level="4" data-path="storage.html"><a href="storage.html"><i class="fa fa-check"></i><b>4</b> Storage</a><ul>
 <li class="chapter" data-level="4.1" data-path="storage.html"><a href="storage.html#create-an-s3-bucket"><i class="fa fa-check"></i><b>4.1</b> Create an S3 bucket</a></li>
 <li class="chapter" data-level="4.2" data-path="storage.html"><a href="storage.html#identity-and-access-management-iam"><i class="fa fa-check"></i><b>4.2</b> Identity and Access Management (IAM)</a></li>
-<li class="chapter" data-level="4.3" data-path="storage.html"><a href="storage.html#command-line"><i class="fa fa-check"></i><b>4.3</b> Command line</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="storage.html"><a href="storage.html#aws-command-line-tools"><i class="fa fa-check"></i><b>4.3.1</b> AWS command line tools</a></li>
+<li class="chapter" data-level="4.3" data-path="storage.html"><a href="storage.html#aws-command-line-tools"><i class="fa fa-check"></i><b>4.3</b> AWS command line tools</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="storage.html"><a href="storage.html#installation-of-aws-cli"><i class="fa fa-check"></i><b>4.3.1</b> Installation of AWS CLI</a></li>
+<li class="chapter" data-level="4.3.2" data-path="storage.html"><a href="storage.html#configuration-of-the-aws-cli"><i class="fa fa-check"></i><b>4.3.2</b> Configuration of the AWS CLI</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="customizing-images.html"><a href="customizing-images.html"><i class="fa fa-check"></i><b>5</b> Customizing images</a><ul>
@@ -232,7 +233,7 @@ s3fs#com-rosettahub-default-bioinfo1.cam /mnt/s3 fuse _netdev,allow_other 0 0</c
 <div id="configure-server-to-send-e-mail" class="section level2">
 <h2><span class="header-section-number">5.5</span> Configure server to send e-mail</h2>
 <p>secure simple mail transfer protocol</p>
-<p>Update ubuntu repository</p>
+<p>Update local package cache</p>
 <pre><code>sudo apt-get update</code></pre>
 <p>Install the ssmtp package</p>
 <pre><code>sudo apt-get install ssmtp</code></pre>
