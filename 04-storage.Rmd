@@ -113,8 +113,8 @@ aws configure
 
 Enter security credentials of IAM user. Default region name should be set to eu-west-1, and default output format to json.
 ```
-AWS Access Key ID [****************JQKA]: AKIAJQWONQOOSXXXXXXX
-AWS Secret Access Key [****************APTR]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+AWS Access Key ID [****************JQKA]: AKIAIOSFODNN7EXAMPLE
+AWS Secret Access Key [****************APTR]: UYPg0R42LkqfVbp2YKre/Rz6FbepX/EXAMPLEKEY
 Default region name [eu-west-1]: 
 Default output format [json]: 
 ```

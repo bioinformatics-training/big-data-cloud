@@ -28,13 +28,15 @@ In Docker terminology, we add a  [layer](https://docs.docker.com/glossary/?term=
 
 For some projects we do not want the overhead of a graphical user interface and do not require all of the tools provided by the managed
 
+For some tasks we want a rich GUI with comprehensive tools for interactive analysis. In other projects we may want to process data in batch mode and thena  more minimalist container is more appropriate - faster to start, streamlined (no overhead of GUI)
+
 
 
 To create a derived managed image, users have to launch a RosettaHUB machine then create an image from that machine on RosettaHUB. Managed images are configured with Docker containers. Docker containers contain applications for data science such as Pyhton, R, Rstudio, Scala, Sql and notebooks such as Jupyter and Zeppelin.
 
 We can create derived images from any of these baseline images.
 
-Explain example
+Explain example - R for machine learning
 
 ## Launch machine
 On Federation Console, go to Images section where you will see the following list:
@@ -87,15 +89,13 @@ sudo apt-get install s3fs
 ```
 
 Find the **Access Key ID** and **Secret Access Key** for your default iamuser. They will appear like this:
-**Access Key ID:** *X*
-**Secret Access Key:** *X*
 
-
-
+* **Access Key ID:** AKIAIOSFODNN7EXAMPLE
+* **Secret Access Key:** UYPg0R42LkqfVbp2YKre/Rz6FbepX/EXAMPLEKEY
 
 Create the /etc/passwd-s3fs file
 ```
-sudo echo ACCESS_KEY_ID:Secret_Access_KEY_ID > /etc/passwd-s3fs
+sudo echo AKIAIOSFODNN7EXAMPLE:UYPg0R42LkqfVbp2YKre/Rz6FbepX/EXAMPLEKEY > /etc/passwd-s3fs
 ```
 
 Save file, then set appropriate permissions
@@ -187,7 +187,7 @@ mainuser:username@gmail.com:smtp.gmail.com:587
 
 From now on, the machine will Email when requested through command line or script.
 
-Check setup by creating the a script to send an e-mail to yourself
+Check setup by creating a script to send an e-mail to yourself
 ```
 nano send-alert.sh
 ```
@@ -250,6 +250,11 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 Update the repository:
 ```
 sudo apt update
+```
+
+Check which versions of R are available now.
+```
+apt-cache policy r-base-core
 ```
 
 Install the R binaries:

@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="storage.html">
-<link rel="next" href="formations.html">
+<link rel="next" href="run-analysis.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -102,20 +102,19 @@
 <li class="chapter" data-level="5.5" data-path="customizing-images.html"><a href="customizing-images.html#configure-server-to-send-e-mail"><i class="fa fa-check"></i><b>5.5</b> Configure server to send e-mail</a></li>
 <li class="chapter" data-level="5.6" data-path="customizing-images.html"><a href="customizing-images.html#install-r"><i class="fa fa-check"></i><b>5.6</b> Install R</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="formations.html"><a href="formations.html"><i class="fa fa-check"></i><b>6</b> Formations</a></li>
-<li class="chapter" data-level="7" data-path="run-analysis.html"><a href="run-analysis.html"><i class="fa fa-check"></i><b>7</b> Run data analysis</a></li>
-<li class="chapter" data-level="8" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>8</b> Collaboration</a><ul>
-<li class="chapter" data-level="8.1" data-path="collaboration.html"><a href="collaboration.html#real-time-collaboration"><i class="fa fa-check"></i><b>8.1</b> Real time collaboration</a></li>
-<li class="chapter" data-level="8.2" data-path="collaboration.html"><a href="collaboration.html#sharing-images-and-formations"><i class="fa fa-check"></i><b>8.2</b> Sharing images and formations</a></li>
+<li class="chapter" data-level="6" data-path="run-analysis.html"><a href="run-analysis.html"><i class="fa fa-check"></i><b>6</b> Run data analysis</a></li>
+<li class="chapter" data-level="7" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>7</b> Collaboration</a><ul>
+<li class="chapter" data-level="7.1" data-path="collaboration.html"><a href="collaboration.html#real-time-collaboration"><i class="fa fa-check"></i><b>7.1</b> Real time collaboration</a></li>
+<li class="chapter" data-level="7.2" data-path="collaboration.html"><a href="collaboration.html#sharing-images-and-formations"><i class="fa fa-check"></i><b>7.2</b> Sharing images and formations</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>9</b> Resources</a><ul>
-<li class="chapter" data-level="9.1" data-path="resources.html"><a href="resources.html#rosetta-hub-documentation"><i class="fa fa-check"></i><b>9.1</b> Rosetta Hub Documentation</a></li>
-<li class="chapter" data-level="9.2" data-path="resources.html"><a href="resources.html#general-data-protection-regulation-gdpr"><i class="fa fa-check"></i><b>9.2</b> General Data Protection Regulation (GDPR)</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="resources.html"><a href="resources.html#guidance-from-the-university-of-cambridge"><i class="fa fa-check"></i><b>9.2.1</b> Guidance from the University of Cambridge</a></li>
-<li class="chapter" data-level="9.2.2" data-path="resources.html"><a href="resources.html#aws-gdpr-center"><i class="fa fa-check"></i><b>9.2.2</b> AWS GDPR Center</a></li>
+<li class="chapter" data-level="8" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>8</b> Resources</a><ul>
+<li class="chapter" data-level="8.1" data-path="resources.html"><a href="resources.html#rosetta-hub-documentation"><i class="fa fa-check"></i><b>8.1</b> Rosetta Hub Documentation</a></li>
+<li class="chapter" data-level="8.2" data-path="resources.html"><a href="resources.html#general-data-protection-regulation-gdpr"><i class="fa fa-check"></i><b>8.2</b> General Data Protection Regulation (GDPR)</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="resources.html"><a href="resources.html#guidance-from-the-university-of-cambridge"><i class="fa fa-check"></i><b>8.2.1</b> Guidance from the University of Cambridge</a></li>
+<li class="chapter" data-level="8.2.2" data-path="resources.html"><a href="resources.html#aws-gdpr-center"><i class="fa fa-check"></i><b>8.2.2</b> AWS GDPR Center</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="resources.html"><a href="resources.html#docker-glossary"><i class="fa fa-check"></i><b>9.3</b> Docker glossary</a></li>
-<li class="chapter" data-level="9.4" data-path="resources.html"><a href="resources.html#grants-available-from-service-providers"><i class="fa fa-check"></i><b>9.4</b> Grants available from service providers</a></li>
+<li class="chapter" data-level="8.3" data-path="resources.html"><a href="resources.html#docker-glossary"><i class="fa fa-check"></i><b>8.3</b> Docker glossary</a></li>
+<li class="chapter" data-level="8.4" data-path="resources.html"><a href="resources.html#grants-available-from-service-providers"><i class="fa fa-check"></i><b>8.4</b> Grants available from service providers</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -165,9 +164,10 @@
 </ol>
 <p>In Docker terminology, we add a <a href="https://docs.docker.com/glossary/?term=layer">layer</a> to the base image.</p>
 <p>For some projects we do not want the overhead of a graphical user interface and do not require all of the tools provided by the managed</p>
+<p>For some tasks we want a rich GUI with comprehensive tools for interactive analysis. In other projects we may want to process data in batch mode and thena more minimalist container is more appropriate - faster to start, streamlined (no overhead of GUI)</p>
 <p>To create a derived managed image, users have to launch a RosettaHUB machine then create an image from that machine on RosettaHUB. Managed images are configured with Docker containers. Docker containers contain applications for data science such as Pyhton, R, Rstudio, Scala, Sql and notebooks such as Jupyter and Zeppelin.</p>
 <p>We can create derived images from any of these baseline images.</p>
-<p>Explain example</p>
+<p>Explain example - R for machine learning</p>
 </div>
 <div id="launch-machine" class="section level2">
 <h2><span class="header-section-number">5.2</span> Launch machine</h2>
@@ -216,9 +216,13 @@ Figure 5.5: Connectivity information for ubuntu server container
 <p>We will use the tool <a href="https://github.com/s3fs-fuse/s3fs-fuse">s3fs</a>.</p>
 <p>Install s3fs from ubuntu repository</p>
 <pre><code>sudo apt-get install s3fs</code></pre>
-<p>Find the <strong>Access Key ID</strong> and <strong>Secret Access Key</strong> for your default iamuser. They will appear like this: <strong>Access Key ID:</strong> <em>X</em> <strong>Secret Access Key:</strong> <em>X</em></p>
+<p>Find the <strong>Access Key ID</strong> and <strong>Secret Access Key</strong> for your default iamuser. They will appear like this:</p>
+<ul>
+<li><strong>Access Key ID:</strong> AKIAIOSFODNN7EXAMPLE</li>
+<li><strong>Secret Access Key:</strong> UYPg0R42LkqfVbp2YKre/Rz6FbepX/EXAMPLEKEY</li>
+</ul>
 <p>Create the /etc/passwd-s3fs file</p>
-<pre><code>sudo echo ACCESS_KEY_ID:Secret_Access_KEY_ID &gt; /etc/passwd-s3fs</code></pre>
+<pre><code>sudo echo AKIAIOSFODNN7EXAMPLE:UYPg0R42LkqfVbp2YKre/Rz6FbepX/EXAMPLEKEY &gt; /etc/passwd-s3fs</code></pre>
 <p>Save file, then set appropriate permissions</p>
 <pre><code>sudo chmod 640 /etc/passwd-s3fs</code></pre>
 <p>Create a mount point and mount S3 bucket</p>
@@ -275,7 +279,7 @@ FromLineOverride=YES</code></pre>
 <pre><code>root:username@gmail.com:smtp.gmail.com:587
 mainuser:username@gmail.com:smtp.gmail.com:587</code></pre>
 <p>From now on, the machine will Email when requested through command line or script.</p>
-<p>Check setup by creating the a script to send an e-mail to yourself</p>
+<p>Check setup by creating a script to send an e-mail to yourself</p>
 <pre><code>nano send-alert.sh</code></pre>
 <pre><code>#!/bin/sh
  
@@ -310,6 +314,8 @@ rm $MAILFILE</code></pre>
 <pre><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9</code></pre>
 <p>Update the repository:</p>
 <pre><code>sudo apt update</code></pre>
+<p>Check which versions of R are available now.</p>
+<pre><code>apt-cache policy r-base-core</code></pre>
 <p>Install the R binaries:</p>
 <pre><code>sudo apt install r-base</code></pre>
 <p>R on ubuntu server</p>
@@ -322,7 +328,7 @@ rm $MAILFILE</code></pre>
         </div>
       </div>
 <a href="storage.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="formations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="run-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

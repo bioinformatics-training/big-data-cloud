@@ -3,10 +3,10 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">An Introduction to Machine Learning</a></li>
+        <li><a href="./">Big Data and Cloud Computing</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/bioinformatics-training/intro-machine-learning/edit/master/%s
+    edit: https://github.com/bioinformatics-training/big-data-cloud/edit/master/%s
     download: ["pdf"]
 #bookdown::pdf_book:
   #includes:

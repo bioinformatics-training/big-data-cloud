@@ -2,4 +2,4 @@
 
 ## Real time collaboration
 
-## Sharing images and formations
+## Sharing images
