@@ -3,9 +3,12 @@ output: html_document
 editor_options: 
   chunk_output_type: console
 ---
-# Rosetta Hub {#rosetta-hub}
+# Introduction to RosettaHUB {#rosetta-hub}
 
 <!-- introduction to the Rosetta Hub platform -->
+
+Rosetta Hub platform as a service
+
 
 ## Features
 

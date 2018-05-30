@@ -1,6 +1,40 @@
 # Storage {#storage}
+In this chapter we will show you how to use the Amazon Web Services (AWS) Simple Storage Service (S3) ([https://aws.amazon.com/documentation/s3/](https://aws.amazon.com/documentation/s3/)).
 
-## Web interface
+## Create an S3 bucket
+On S3, objects (data and their metadata) are stored in buckets. RosettaHUB calls these buckets **Simple Storage Drives** and provides a default bucket for each user.
+
+```{r storageS3DriveSection, echo=FALSE, out.width='50%', fig.align='center', fig.cap="Simple storage drive section on Federation console"}
+knitr::include_graphics("images/storage_simple_storage_drives_section.png")
+```
+
+Let's create a new bucket (simple storage drive) to use on this course. Go to the simple storage drive section on the Federation console and click create.
+```{r storageCreateS3Storage, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Create S3 storage dialog box"}
+knitr::include_graphics("images/create_s3_storage.png")
+```
+
+Specify a **Label** and **Bucket**. Accept defaults for all other settings. The **Bucket** name must be globally unique ([https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html)), so here we have combined our username (bioinfo1.cam) with the RosettaHUB domain name:
+
+**Label**: *course*
+
+**Bucket**: *com-rosettahub-course-bioinfo1.cam*
+
+
+```{r storageCreateS3StorageCompletedForm, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Set Label and Bucket names"}
+knitr::include_graphics("images/create_s3_storage_form_completed.png")
+```
+
+Once your new simple storage drive has been created, it will be listed alongside your default storage drive.
+```{r storageS3course, echo=FALSE, out.width='80%', fig.align='center', fig.cap="New S3 bucket has been added to list of simple storage drives."}
+knitr::include_graphics("images/simple_storage_drives_incl_course.png")
+```
+
+Left clicking on the new bucket (simple storage drive) will take you to the AWS management console. Try uploading a file.
+```{r storageS3BucketWebInterface, echo=FALSE, out.width='100%', fig.align='center', fig.cap="S3 bucket web interface."}
+knitr::include_graphics("images/s3_bucket_web_interface.png")
+```
+
+
 
 ## Command line
 

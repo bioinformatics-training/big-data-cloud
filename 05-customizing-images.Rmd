@@ -77,6 +77,50 @@ chmod 600 private-keys-m-e1f0bf55-815b-439b-afae-a157d59facbe-0.pem
 ssh ubuntu@vm-34-245-226-49.rosettavm.com -i private-keys-m-e1f0bf55-815b-439b-afae-a157d59facbe-0.pem
 ```
 
+## Mount S3 storage
+
+We will use the tool [s3fs](https://github.com/s3fs-fuse/s3fs-fuse). 
+
+Install s3fs from ubuntu repository
+```
+sudo apt-get install s3fs
+```
+
+Find the **Access Key ID** and **Secret Access Key** for your default iamuser. They will appear like this:
+**Access Key ID:** *X*
+**Secret Access Key:** *X*
+
+
+
+
+Create the /etc/passwd-s3fs file
+```
+sudo echo ACCESS_KEY_ID:Secret_Access_KEY_ID > /etc/passwd-s3fs
+```
+
+Save file, then set appropriate permissions
+```
+sudo chmod 640 /etc/passwd-s3fs
+```
+
+Create a mount point and mount S3 bucket
+```
+sudo mkdir -p /mnt/s3
+sudo s3fs com-rosettahub-default-bioinfo1.cam /mnt/s3 -o passwd_file=/etc/passwd-s3fs
+```
+
+unmount
+```
+sudo umount /mnt/s3
+```
+
+edit /etc/fstab
+```
+LABEL=cloudimg-rootfs	/	 ext4	defaults,discard	0 0
+s3fs#com-rosettahub-default-bioinfo1.cam /mnt/s3 fuse _netdev,allow_other 0 0
+```
+
+
 ## Configure server to send e-mail
 
 secure simple mail transfer protocol        
@@ -184,7 +228,7 @@ Check which version of R is available in the ubuntu repository
 apt-cache policy r-base-core
 ```
 
-Version 3.2.3 is available, but the latest version of R is 3.5.0. Since binaries of version 3.5.0 are not availalble, we will build it from source.
+Version 3.2.3 is available, but the latest version of R is 3.5.0. Let's see if a more recent version of R is available from the official Comprehensive R Archive Network (CRAN) repository.
 
 Open /etc/apt/sources.list and add the following line to the end of the file:
 
@@ -214,3 +258,4 @@ sudo apt install r-base
 ```
 
 
+R on ubuntu server
