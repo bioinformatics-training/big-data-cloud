@@ -57,17 +57,6 @@ tryCatch(
     # Does training data contain zero and near-zero predictors?
     (nzv <- nearZeroVar(morphTrain, saveMetrics=T))
 
-    # Create boxplots
-    pdf("wheat_seeds_boxplots.pdf", width=6, height=6)
-    featurePlot(x = morphTrain,
-                y = varietyTrain,
-                plot = "box",
-                ## Pass in options to bwplot()
-                scales = list(y = list(relation="free"),
-                              x = list(rot = 90)),
-                layout = c(3,3))
-    dev.off()
-
     # Examine pairwise correlations between predictors
     corMat <- cor(morphTrain)
 
@@ -80,22 +69,6 @@ tryCatch(
     highCorr <- findCorrelation(corMat, cutoff=0.75)
     length(highCorr)
     names(morphTrain)[highCorr]
-
-    # Check for skewness using density plot
-    pdf("wheat_seeds_density_plot.pdf", width=6, height=6)
-    featurePlot(x = morphTrain,
-                y = varietyTrain,
-                plot = "density",
-                ## Pass in options to xyplot() to
-                ## make it prettier
-                scales = list(x = list(relation="free"),
-                              y = list(relation="free")),
-                adjust = 1.5,
-                pch = "|",
-                layout = c(3, 3),
-                auto.key = list(columns = 3))
-    dev.off()
-
 
     # CLASSIFICATION USING kNN
 
@@ -121,11 +94,6 @@ tryCatch(
                      preProcess = c("center", "scale"),
                      tuneGrid=tuneParam,
                      trControl=train_ctrl)
-
-    # Plot cross validation accuracy as a function of k
-    pdf("wheat_seeds_knn_cross-validation.pdf", width=6, height=4)
-    plot(knnFit)
-    dev.off()
 
     # Predict the class (wheat variety) of the observations in the test set.
     test_pred <- predict(knnFit, morphTest)

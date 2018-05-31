@@ -8,3 +8,29 @@ scp -i private-keys-m-cad2e4b8-770c-4574-b923-a3cfcece2da3-0.pem ~/scripts/knn_c
 
 scp -i private-keys-m-cad2e4b8-770c-4574-b923-a3cfcece2da3-0.pem ~/git_repositories/big-data-cloud/scripts/knn_classification_wheat_seeds.R ubuntu@vm-34-245-95-14.rosettavm.com:/home/ubuntu/
 -->
+
+## Example problem
+The seeds data set [https://archive.ics.uci.edu/ml/datasets/seeds](https://archive.ics.uci.edu/ml/datasets/seeds) contains morphological measurements on the kernels of three varieties of wheat: Kama, Rosa and Canadian.
+
+## Launch machine
+Start up a container from the machine image you created in the previous chapter.
+
+Get connection information. Right click on .. context menu
+
+## Copy script to container
+
+```
+scp -i private-keys-m-cad2e4b8-770c-4574-b923-a3cfcece2da3-0.pem ~/Course_Materials/scripts/knn_classification_wheat_seeds.R ubuntu@vm-34-245-95-14.rosettavm.com:/home/ubuntu/
+```
+
+introduce error into script and see if it triggers appropriate e-mail
+
+## Retrieve results files
+
+```
+scp -i private-keys-m-cad2e4b8-770c-4574-b923-a3cfcece2da3-0.pem -r ubuntu@vm-34-245-95-14.rosettavm.com:/mnt/s3/results .
+```
+
+```
+aws s3 cp --recursive s3://com-rosettahub-course-bioinfo1.cam/results results
+```

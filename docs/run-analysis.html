@@ -140,7 +140,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.6" data-path="customizing-images.html"><a href="customizing-images.html#install-r"><i class="fa fa-check"></i><b>5.6</b> Install R</a></li>
 <li class="chapter" data-level="5.7" data-path="customizing-images.html"><a href="customizing-images.html#create-new-machine-image-from-container"><i class="fa fa-check"></i><b>5.7</b> Create new machine image from container</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="run-analysis.html"><a href="run-analysis.html"><i class="fa fa-check"></i><b>6</b> Run data analysis</a></li>
+<li class="chapter" data-level="6" data-path="run-analysis.html"><a href="run-analysis.html"><i class="fa fa-check"></i><b>6</b> Run data analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="run-analysis.html"><a href="run-analysis.html#example-problem"><i class="fa fa-check"></i><b>6.1</b> Example problem</a></li>
+<li class="chapter" data-level="6.2" data-path="run-analysis.html"><a href="run-analysis.html#launch-machine-1"><i class="fa fa-check"></i><b>6.2</b> Launch machine</a></li>
+<li class="chapter" data-level="6.3" data-path="run-analysis.html"><a href="run-analysis.html#copy-script-to-container"><i class="fa fa-check"></i><b>6.3</b> Copy script to container</a></li>
+<li class="chapter" data-level="6.4" data-path="run-analysis.html"><a href="run-analysis.html#retrieve-results-files"><i class="fa fa-check"></i><b>6.4</b> Retrieve results files</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>7</b> Collaboration</a><ul>
 <li class="chapter" data-level="7.1" data-path="collaboration.html"><a href="collaboration.html#real-time-collaboration"><i class="fa fa-check"></i><b>7.1</b> Real time collaboration</a></li>
 <li class="chapter" data-level="7.2" data-path="collaboration.html"><a href="collaboration.html#sharing-images"><i class="fa fa-check"></i><b>7.2</b> Sharing images</a></li>
@@ -186,7 +191,26 @@ scp -i private-keys-m-cad2e4b8-770c-4574-b923-a3cfcece2da3-0.pem ~/scripts/knn_c
 
 scp -i private-keys-m-cad2e4b8-770c-4574-b923-a3cfcece2da3-0.pem ~/git_repositories/big-data-cloud/scripts/knn_classification_wheat_seeds.R ubuntu@vm-34-245-95-14.rosettavm.com:/home/ubuntu/
 -->
+<div id="example-problem" class="section level2">
+<h2><span class="header-section-number">6.1</span> Example problem</h2>
+<p>The seeds data set <a href="https://archive.ics.uci.edu/ml/datasets/seeds" class="uri">https://archive.ics.uci.edu/ml/datasets/seeds</a> contains morphological measurements on the kernels of three varieties of wheat: Kama, Rosa and Canadian.</p>
+</div>
+<div id="launch-machine-1" class="section level2">
+<h2><span class="header-section-number">6.2</span> Launch machine</h2>
+<p>Start up a container from the machine image you created in the previous chapter.</p>
+<p>Get connection information. Right click on .. context menu</p>
+</div>
+<div id="copy-script-to-container" class="section level2">
+<h2><span class="header-section-number">6.3</span> Copy script to container</h2>
+<pre><code>scp -i private-keys-m-cad2e4b8-770c-4574-b923-a3cfcece2da3-0.pem ~/Course_Materials/scripts/knn_classification_wheat_seeds.R ubuntu@vm-34-245-95-14.rosettavm.com:/home/ubuntu/</code></pre>
+<p>introduce error into script and see if it triggers appropriate e-mail</p>
+</div>
+<div id="retrieve-results-files" class="section level2">
+<h2><span class="header-section-number">6.4</span> Retrieve results files</h2>
+<pre><code>scp -i private-keys-m-cad2e4b8-770c-4574-b923-a3cfcece2da3-0.pem -r ubuntu@vm-34-245-95-14.rosettavm.com:/mnt/s3/results .</code></pre>
+<pre><code>aws s3 cp --recursive s3://com-rosettahub-course-bioinfo1.cam/results results</code></pre>
 
+</div>
 </div>
             </section>
 
