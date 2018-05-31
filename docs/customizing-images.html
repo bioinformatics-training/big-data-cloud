@@ -286,12 +286,10 @@ sudo s3fs com-rosettahub-course-bioinfo1.cam /mnt/s3 -o passwd_file=/etc/passwd-
 #
 # The person who gets all mail for userids &lt; 1000
 # Make this empty to disable rewriting.
-#root=postmaster
 root=MyEmailAddress@gmail.com
 
 # The place where the mail goes. The actual machine name is required no
 # MX records are consulted. Commonly mailhosts are named mail.domain.com
-#mailhub=mail
 mailhub=smtp.gmail.com:587
 
 AuthUser=MyEmailAddress@gmail.com
@@ -300,12 +298,10 @@ UseTLS=YES
 UseSTARTTLS=YES
 
 # Where will the mail seem to come from?
-#rewriteDomain=
 rewriteDomain=gmail.com
 
 # The full hostname
-#hostname=MyMediaServer.home
-hostname=MyMediaServer.home
+hostname=myHostname
 
 # Are users allowed to set their own From: address?
 # YES - Allow the user to specify their own From: address
@@ -325,7 +321,7 @@ MAILFILE=/tmp/email_alert.txt
  
 echo &quot;Subject: RosettaHUB job completed!&quot; &gt; $MAILFILE
 echo &quot;To: mw283@cam.ac.uk&quot; &gt;&gt; $MAILFILE
-echo &quot;From: from_who@from_where.com&quot; &gt;&gt; $MAILFILE
+echo &quot;From: Ubuntu server base&quot; &gt;&gt; $MAILFILE
  
 echo &quot;&quot; &gt;&gt; $MAILFILE
 echo &quot;Test sent on $(date &#39;+%Y/%m/%d at %H:%M:%S&#39;).&quot; &gt;&gt; $MAILFILE
@@ -357,7 +353,7 @@ rm $MAILFILE</code></pre>
 <p>Install the R binaries:</p>
 <pre><code>sudo apt install r-base</code></pre>
 <p>Install caret:</p>
-<pre><code>sudo apt-get install r-cran-caret r-cran-domc r-cran-rcolorbrewer</code></pre>
+<pre><code>sudo apt-get install r-cran-caret r-cran-domc r-cran-rcolorbrewer r-cran-e1071</code></pre>
 <p>Start R</p>
 <pre><code>R</code></pre>
 <p>Install <strong>corrplot</strong> by pasting the following command at the R command prompt:</p>

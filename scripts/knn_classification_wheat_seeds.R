@@ -1,113 +1,156 @@
 #!/usr/bin/env Rscript
 
-# set working directory - this is where plots and other results files will be saved
-setwd("/mnt/s3/results/")
+# e-mail alert settings
+emailSubjectSuccess <- "JOB COMPLETED: knn_classification_wheat_seeds.R"
+emailSubjectFailure <- "JOB FAILED: knn_classification_wheat_seeds.R"
+emailTo <- "mw283@cam.ac.uk"
+emailFrom <- "CARET Bioinfo1"
+emailMessageSuccess <- "Execution of script knn_classification_wheat_seeds.R has finished."
+emailMessageFailure <- "Execution of script knn_classification_wheat_seeds.R has failed"
 
-# load libraries
-library(caret)
-library(RColorBrewer)
-library(doMC)
-library(corrplot)
+# output settings
+outputDirectory <- "/mnt/s3/results/"
+resultsFile <- "results.txt"
 
-# prepare for parallel processing
-registerDoMC()
+# function for sending e-mail alerts
+sendAlertEmail <- function(subject, to, from, msg){
+  mailfile <- "/tmp/email_alert.txt"
+  write(paste("Subject:", subject, sep=" "), mailfile, append=FALSE)
+  write(paste("To:", to, sep=" "), mailfile, append=TRUE)
+  write(paste("From:", from, sep=" "), mailfile, append=TRUE)
+  write("", mailfile, append=TRUE)
+  write(msg, mailfile, append=TRUE)
+  system(paste("cat", mailfile, "| ssmtp", emailTo, sep=" "))
+  unlink("/tmp/email_alert.txt")
+}
 
-# Load data
-load("/mnt/s3/data/wheat_seeds/wheat_seeds.Rda")
+tryCatch(
+  {
+    # set working directory - this is where plots and other results files will be saved
+    setwd(outputDirectory)
 
-# Partition data
-set.seed(42)
-trainIndex <- createDataPartition(y=variety, times=1, p=0.7, list=F)
-varietyTrain <- variety[trainIndex]
-morphTrain <- morphometrics[trainIndex,]
-varietyTest <- variety[-trainIndex]
-morphTest <- morphometrics[-trainIndex,]
+    # load libraries
+    library(caret)
+    library(RColorBrewer)
+    library(doMC)
+    library(corrplot)
+
+    # prepare for parallel processing
+    registerDoMC()
+
+    # Load data
+    load("/mnt/s3/data/wheat_seeds/wheat_seeds.Rda")
+
+    # Partition data
+    set.seed(42)
+    trainIndex <- createDataPartition(y=variety, times=1, p=0.7, list=F)
+    varietyTrain <- variety[trainIndex]
+    morphTrain <- morphometrics[trainIndex,]
+    varietyTest <- variety[-trainIndex]
+    morphTest <- morphometrics[-trainIndex,]
+    summary(varietyTrain)
+    summary(varietyTest)
+
+    # Inspect training data
+    summary(morphTrain)
+
+    # Does training data contain zero and near-zero predictors?
+    (nzv <- nearZeroVar(morphTrain, saveMetrics=T))
+
+    # Create boxplots
+    pdf("wheat_seeds_boxplots.pdf", width=6, height=6)
+    featurePlot(x = morphTrain,
+                y = varietyTrain,
+                plot = "box",
+                ## Pass in options to bwplot()
+                scales = list(y = list(relation="free"),
+                              x = list(rot = 90)),
+                layout = c(3,3))
+    dev.off()
+
+    # Examine pairwise correlations between predictors
+    corMat <- cor(morphTrain)
+
+    # Create correlation plot
+    pdf("wheat_seeds_correlation_plot.pdf", width=6, height=6)
+    corrplot(corMat, order="hclust", tl.cex=1)
+    dev.off()
+
+    # Identify highly correlated variables
+    highCorr <- findCorrelation(corMat, cutoff=0.75)
+    length(highCorr)
+    names(morphTrain)[highCorr]
+
+    # Check for skewness using density plot
+    pdf("wheat_seeds_density_plot.pdf", width=6, height=6)
+    featurePlot(x = morphTrain,
+                y = varietyTrain,
+                plot = "density",
+                ## Pass in options to xyplot() to
+                ## make it prettier
+                scales = list(x = list(relation="free"),
+                              y = list(relation="free")),
+                adjust = 1.5,
+                pch = "|",
+                layout = c(3, 3),
+                auto.key = list(columns = 3))
+    dev.off()
+
+
+    # CLASSIFICATION USING kNN
+
+    # Create a ‘grid’ of values of k for evaluation:
+    tuneParam <- data.frame(k=seq(1,50,2))
+
+    # Generate a list of seeds for reproducibility based on grid size
+    set.seed(42)
+    seeds <- vector(mode = "list", length = 101)
+    for(i in 1:100) seeds[[i]] <- sample.int(1000, length(tuneParam$k))
+    seeds[[101]] <- sample.int(1000,1)
+
+    # Set training parameters
+    train_ctrl <- trainControl(method="repeatedcv",
+                               number = 10,
+                               repeats = 10,
+                               seeds = seeds)
+
+
+    # Run training to find optimum value of k
+    knnFit <- train(morphTrain, varietyTrain,
+                     method="knn",
+                     preProcess = c("center", "scale"),
+                     tuneGrid=tuneParam,
+                     trControl=train_ctrl)
+
+    # Plot cross validation accuracy as a function of k
+    pdf("wheat_seeds_knn_cross-validation.pdf", width=6, height=4)
+    plot(knnFit)
+    dev.off()
+
+    # Predict the class (wheat variety) of the observations in the test set.
+    test_pred <- predict(knnFit, morphTest)
+    confMat <- confusionMatrix(test_pred, varietyTest)
+
+    # Send e-mail notification that script execution is complete
+    #emailSubject, emailTo, emailFrom, emailMessage
+    sendAlertEmail(emailSubjectSuccess, emailTo, emailFrom, emailMessageSuccess)
+  },
+  error=function(err) {
+    message(err)
+    sendAlertEmail(emailSubjectFailure, emailTo, emailFrom, paste(emailMessageFailure, "\n\n", err, sep=""))
+  }
+)
+
+write("Script: knn_classification_wheat_seeds.R", resultsFile, append=F)
+write(paste("Date:", date(), sep=" "), resultsFile, append=T)
+write("", resultsFile, append = T)
+
+sink(resultsFile, append=TRUE)
+cat("Class sizes in training set:\n")
 summary(varietyTrain)
+cat("\nClass sizes in test set:\n")
 summary(varietyTest)
-
-# Inspect training data
-summary(morphTrain)
-
-# Does training data contain zero and near-zero predictors?
-(nzv <- nearZeroVar(morphTrain, saveMetrics=T))
-
-# Create boxplots
-pdf("wheat_seeds_boxplots.pdf", width=6, height=6)
-featurePlot(x = morphTrain,
-            y = varietyTrain,
-            plot = "box",
-            ## Pass in options to bwplot()
-            scales = list(y = list(relation="free"),
-                          x = list(rot = 90)),
-            layout = c(3,3))
-dev.off()
-
-# Examine pairwise correlations between predictors
-corMat <- cor(morphTrain)
-
-# Create correlation plot
-pdf("wheat_seeds_correlation_plot.pdf", width=6, height=6)
-corrplot(corMat, order="hclust", tl.cex=1)
-dev.off()
-
-# Identify highly correlated variables
-highCorr <- findCorrelation(corMat, cutoff=0.75)
-length(highCorr)
-names(morphTrain)[highCorr]
-
-# Check for skewness using density plot
-pdf("wheat_seeds_density_plot.pdf", width=6, height=6)
-featurePlot(x = morphTrain,
-            y = varietyTrain,
-            plot = "density",
-            ## Pass in options to xyplot() to
-            ## make it prettier
-            scales = list(x = list(relation="free"),
-                          y = list(relation="free")),
-            adjust = 1.5,
-            pch = "|",
-            layout = c(3, 3),
-            auto.key = list(columns = 3))
-dev.off()
-
-
-# CLASSIFICATION USING kNN
-
-# Create a ‘grid’ of values of k for evaluation:
-tuneParam <- data.frame(k=seq(1,50,2))
-
-# Generate a list of seeds for reproducibility based on grid size
-set.seed(42)
-seeds <- vector(mode = "list", length = 101)
-for(i in 1:100) seeds[[i]] <- sample.int(1000, length(tuneParam$k))
-seeds[[101]] <- sample.int(1000,1)
-
-# Set training parameters
-#train_ctrl <- trainControl(method="repeatedcv",
-#                           number = 10,
-#                           repeats = 10,
-#                           preProcOptions=list(cutoff=0.75),
-#                           seeds = seeds)
-
-train_ctrl <- trainControl(method="repeatedcv",
-                           number = 10,
-                           repeats = 10,
-                           seeds = seeds)
-
-
-# Run training to find optimum value of k
-(knnFit <- train(morphTrain, varietyTrain,
-                method="knn",
-                preProcess = c("center", "scale"),
-                tuneGrid=tuneParam,
-                trControl=train_ctrl))
-
-# Plot cross validation accuracy as a function of k
-pdf("wheat_seeds_knn_cross-validation.pdf", width=6, height=4)
-plot(knnFit)
-dev.off()
-
-# Predict the class (wheat variety) of the observations in the test set.
-test_pred <- predict(knnFit, morphTest)
-confusionMatrix(test_pred, varietyTest)
-
+cat("\nCross-validation:\n")
+knnFit
+confMat
+sink()

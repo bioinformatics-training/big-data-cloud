@@ -260,7 +260,7 @@ sudo apt install r-base
 
 Install caret:
 ```
-sudo apt-get install r-cran-caret r-cran-domc r-cran-rcolorbrewer
+sudo apt-get install r-cran-caret r-cran-domc r-cran-rcolorbrewer r-cran-e1071
 ```
 
 Start R
