@@ -25,7 +25,7 @@
 <meta name="author" content="Sudhakaran Prabakaran and Matt Wayland">
 
 
-<meta name="date" content="2018-05-30">
+<meta name="date" content="2018-05-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -49,6 +49,43 @@
 
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -63,7 +100,7 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">An Introduction to Machine Learning</a></li>
+<li><a href="./">Big Data and Cloud Computing</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About the course</a><ul>
@@ -101,11 +138,12 @@
 <li class="chapter" data-level="5.4" data-path="customizing-images.html"><a href="customizing-images.html#mount-s3-storage"><i class="fa fa-check"></i><b>5.4</b> Mount S3 storage</a></li>
 <li class="chapter" data-level="5.5" data-path="customizing-images.html"><a href="customizing-images.html#configure-server-to-send-e-mail"><i class="fa fa-check"></i><b>5.5</b> Configure server to send e-mail</a></li>
 <li class="chapter" data-level="5.6" data-path="customizing-images.html"><a href="customizing-images.html#install-r"><i class="fa fa-check"></i><b>5.6</b> Install R</a></li>
+<li class="chapter" data-level="5.7" data-path="customizing-images.html"><a href="customizing-images.html#create-new-machine-image-from-container"><i class="fa fa-check"></i><b>5.7</b> Create new machine image from container</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="run-analysis.html"><a href="run-analysis.html"><i class="fa fa-check"></i><b>6</b> Run data analysis</a></li>
 <li class="chapter" data-level="7" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>7</b> Collaboration</a><ul>
 <li class="chapter" data-level="7.1" data-path="collaboration.html"><a href="collaboration.html#real-time-collaboration"><i class="fa fa-check"></i><b>7.1</b> Real time collaboration</a></li>
-<li class="chapter" data-level="7.2" data-path="collaboration.html"><a href="collaboration.html#sharing-images-and-formations"><i class="fa fa-check"></i><b>7.2</b> Sharing images and formations</a></li>
+<li class="chapter" data-level="7.2" data-path="collaboration.html"><a href="collaboration.html#sharing-images"><i class="fa fa-check"></i><b>7.2</b> Sharing images</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>8</b> Resources</a><ul>
 <li class="chapter" data-level="8.1" data-path="resources.html"><a href="resources.html#rosetta-hub-documentation"><i class="fa fa-check"></i><b>8.1</b> Rosetta Hub Documentation</a></li>
@@ -215,24 +253,24 @@ Figure 5.5: Connectivity information for ubuntu server container
 <h2><span class="header-section-number">5.4</span> Mount S3 storage</h2>
 <p>We will use the tool <a href="https://github.com/s3fs-fuse/s3fs-fuse">s3fs</a>.</p>
 <p>Install s3fs from ubuntu repository</p>
-<pre><code>sudo apt-get install s3fs</code></pre>
+<pre><code>sudo apt-get update
+sudo apt-get install s3fs</code></pre>
 <p>Find the <strong>Access Key ID</strong> and <strong>Secret Access Key</strong> for your default iamuser. They will appear like this:</p>
 <ul>
 <li><strong>Access Key ID:</strong> AKIAIOSFODNN7EXAMPLE</li>
 <li><strong>Secret Access Key:</strong> UYPg0R42LkqfVbp2YKre/Rz6FbepX/EXAMPLEKEY</li>
 </ul>
 <p>Create the /etc/passwd-s3fs file</p>
-<pre><code>sudo echo AKIAIOSFODNN7EXAMPLE:UYPg0R42LkqfVbp2YKre/Rz6FbepX/EXAMPLEKEY &gt; /etc/passwd-s3fs</code></pre>
-<p>Save file, then set appropriate permissions</p>
+<pre><code>echo AKIAIOSFODNN7EXAMPLE:UYPg0R42LkqfVbp2YKre/Rz6FbepX/EXAMPLEKEY | sudo tee --append /etc/passwd-s3fs</code></pre>
+<p>Set appropriate permissions</p>
 <pre><code>sudo chmod 640 /etc/passwd-s3fs</code></pre>
 <p>Create a mount point and mount S3 bucket</p>
 <pre><code>sudo mkdir -p /mnt/s3
-sudo s3fs com-rosettahub-default-bioinfo1.cam /mnt/s3 -o passwd_file=/etc/passwd-s3fs</code></pre>
+sudo s3fs com-rosettahub-course-bioinfo1.cam /mnt/s3 -o passwd_file=/etc/passwd-s3fs</code></pre>
 <p>unmount</p>
 <pre><code>sudo umount /mnt/s3</code></pre>
 <p>edit /etc/fstab</p>
-<pre><code>LABEL=cloudimg-rootfs   /    ext4   defaults,discard    0 0
-s3fs#com-rosettahub-default-bioinfo1.cam /mnt/s3 fuse _netdev,allow_other 0 0</code></pre>
+<pre><code>echo &quot;s3fs#com-rosettahub-course-bioinfo1.cam /mnt/s3 fuse _netdev,allow_other,uid=1000,gid=1000,umask=0002 0 0&quot; | sudo tee --append /etc/fstab</code></pre>
 </div>
 <div id="configure-server-to-send-e-mail" class="section level2">
 <h2><span class="header-section-number">5.5</span> Configure server to send e-mail</h2>
@@ -307,18 +345,48 @@ rm $MAILFILE</code></pre>
 <p>Check which version of R is available in the ubuntu repository</p>
 <pre><code>apt-cache policy r-base-core</code></pre>
 <p>Version 3.2.3 is available, but the latest version of R is 3.5.0. Let’s see if a more recent version of R is available from the official Comprehensive R Archive Network (CRAN) repository.</p>
-<p>Open /etc/apt/sources.list and add the following line to the end of the file:</p>
-<pre><code>sudo nano /etc/apt/sources.list</code></pre>
-<pre><code>deb http://cran.rstudio.com/bin/linux/ubuntu xenial/</code></pre>
+<p>Add the CRAN repository to the list of sources:</p>
+<pre><code>echo &quot;deb http://cran.rstudio.com/bin/linux/ubuntu xenial/&quot; | sudo tee --append /etc/apt/sources.list</code></pre>
 <p>Add the key ID for the CRAN network: Ubuntu GPG key:</p>
 <pre><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9</code></pre>
-<p>Update the repository:</p>
+<p>Update the cache:</p>
 <pre><code>sudo apt update</code></pre>
 <p>Check which versions of R are available now.</p>
 <pre><code>apt-cache policy r-base-core</code></pre>
+<p>Version 3.4.4 is available</p>
 <p>Install the R binaries:</p>
 <pre><code>sudo apt install r-base</code></pre>
-<p>R on ubuntu server</p>
+<p>Install caret:</p>
+<pre><code>sudo apt-get install r-cran-caret r-cran-domc r-cran-rcolorbrewer</code></pre>
+<p>Start R</p>
+<pre><code>R</code></pre>
+<p>Install <strong>corrplot</strong> by pasting the following command at the R command prompt:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;corrplot&quot;</span>)</code></pre></div>
+<p>Allow R to create a personal library for you.</p>
+<p>Then quit R</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">q</span>()</code></pre></div>
+</div>
+<div id="create-new-machine-image-from-container" class="section level2">
+<h2><span class="header-section-number">5.7</span> Create new machine image from container</h2>
+<div class="figure" style="text-align: center"><span id="fig:customSessionsUbuntuServerBase"></span>
+<img src="images/sessions_ubuntu_server_base.png" alt="Customized ubuntu server container listed under Sessions" width="50%" />
+<p class="caption">
+Figure 5.6: Customized ubuntu server container listed under Sessions
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:customContainerContextMenu"></span>
+<img src="images/ubuntu_server_base_session_context_menu.png" alt="Context menu for container" width="50%" />
+<p class="caption">
+Figure 5.7: Context menu for container
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:customCreateMachineImage"></span>
+<img src="images/create_machine_image.tiff" alt="Creating a new machine image from a running container." width="100%" />
+<p class="caption">
+Figure 5.8: Creating a new machine image from a running container.
+</p>
+</div>
+<p>Start up new container to test!</p>
 
 </div>
 </div>
@@ -358,7 +426,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/bioinformatics-training/intro-machine-learning/edit/master/05-customizing-images.Rmd",
+"link": "https://github.com/bioinformatics-training/big-data-cloud/edit/master/05-customizing-images.Rmd",
 "text": "Edit"
 },
 "download": ["big-data-cloud-computing.pdf"],

@@ -52,7 +52,7 @@ You will see that an IAM user has been created for you automatically. This defau
 knitr::include_graphics("images/create_iam_user.png")
 ```
 
-Enter an **Iam User Name** and **Label**. The **Signin Url** can be left blank and the **Default Region** does not need to be changed from **eu-west-1**. The default policy is **AdministratorAccess**, which is inappropriate for our new IAM user. Selecting **AmazonS3FullAccess** brings up a more restrictive policy, where the new IAM user can only access S3 services:
+Enter an **Iam User Name** (e.g. course-s3) and **Label** (can be same as Iam User Name). The **Signin Url** can be left blank and the **Default Region** does not need to be changed from **eu-west-1**. The default policy is **AdministratorAccess**, which is inappropriate for our new IAM user. Selecting **AmazonS3FullAccess** brings up a more restrictive policy, where the new IAM user can only access S3 services:
 
 ```
 {
@@ -71,22 +71,24 @@ However, this is still too permissive. We want to restrict our new IAM user to t
 
 ```
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": "s3:*",
-      "Resource": ["arn:aws:s3:::com-rosettahub-course-bioinfo1.cam/*"]
-    }
-  ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:DeleteObject",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::com-rosettahub-course-bioinfo1.cam",
+                "arn:aws:s3:::com-rosettahub-course-bioinfo1.cam/*"
+            ]
+        }
+    ]
 }
 ```
-
-The completed form should look something like this:
-```{r createIAMuserCompletedForm, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Create IAM user dialog. Auto generated policy replaced with manually edited version."}
-knitr::include_graphics("images/create_iam_user_completed_form.png")
-```
-
 
 
 ## AWS command line tools

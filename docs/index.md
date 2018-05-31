@@ -1,7 +1,7 @@
 --- 
 title: "Big Data and Cloud Computing"
 author: "Sudhakaran Prabakaran and Matt Wayland"
-date: "2018-05-30"
+date: "2018-05-31"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -52,7 +52,7 @@ During this course you will learn about:
 
 
 ## Contact
-If you have any **comments**, **questions** or **suggestions** about the material, please contact the course instructors: <a href="mailto:wk181x@gmail.com">Sudhakaran Prabakaran</a>, and <a href="mailto:mw283@cam.ac.uk">Matt Wayland</a>. 
+If you have any **comments**, **questions** or **suggestions** about the material, please contact the authors: <a href="mailto:wk181x@gmail.com">Sudhakaran Prabakaran</a>, and <a href="mailto:mw283@cam.ac.uk">Matt Wayland</a>. 
 
 ## Colophon
 

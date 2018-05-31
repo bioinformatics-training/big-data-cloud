@@ -90,6 +90,7 @@ We will use the tool [s3fs](https://github.com/s3fs-fuse/s3fs-fuse).
 
 Install s3fs from ubuntu repository
 ```
+sudo apt-get update
 sudo apt-get install s3fs
 ```
 
@@ -100,10 +101,10 @@ Find the **Access Key ID** and **Secret Access Key** for your default iamuser. T
 
 Create the /etc/passwd-s3fs file
 ```
-sudo echo AKIAIOSFODNN7EXAMPLE:UYPg0R42LkqfVbp2YKre/Rz6FbepX/EXAMPLEKEY > /etc/passwd-s3fs
+echo AKIAIOSFODNN7EXAMPLE:UYPg0R42LkqfVbp2YKre/Rz6FbepX/EXAMPLEKEY | sudo tee --append /etc/passwd-s3fs
 ```
 
-Save file, then set appropriate permissions
+Set appropriate permissions
 ```
 sudo chmod 640 /etc/passwd-s3fs
 ```
@@ -111,7 +112,7 @@ sudo chmod 640 /etc/passwd-s3fs
 Create a mount point and mount S3 bucket
 ```
 sudo mkdir -p /mnt/s3
-sudo s3fs com-rosettahub-default-bioinfo1.cam /mnt/s3 -o passwd_file=/etc/passwd-s3fs
+sudo s3fs com-rosettahub-course-bioinfo1.cam /mnt/s3 -o passwd_file=/etc/passwd-s3fs
 ```
 
 unmount
@@ -121,10 +122,8 @@ sudo umount /mnt/s3
 
 edit /etc/fstab
 ```
-LABEL=cloudimg-rootfs	/	 ext4	defaults,discard	0 0
-s3fs#com-rosettahub-default-bioinfo1.cam /mnt/s3 fuse _netdev,allow_other 0 0
+echo "s3fs#com-rosettahub-course-bioinfo1.cam /mnt/s3 fuse _netdev,allow_other,uid=1000,gid=1000,umask=0002 0 0" | sudo tee --append /etc/fstab
 ```
-
 
 ## Configure server to send e-mail
 
@@ -235,14 +234,9 @@ apt-cache policy r-base-core
 
 Version 3.2.3 is available, but the latest version of R is 3.5.0. Let's see if a more recent version of R is available from the official Comprehensive R Archive Network (CRAN) repository.
 
-Open /etc/apt/sources.list and add the following line to the end of the file:
-
+Add the CRAN repository to the list of sources:
 ```
-sudo nano /etc/apt/sources.list
-```
-
-```
-deb http://cran.rstudio.com/bin/linux/ubuntu xenial/
+echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | sudo tee --append /etc/apt/sources.list
 ```
 
 
@@ -252,7 +246,7 @@ Ubuntu GPG key:
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 ```
 
-Update the repository:
+Update the cache:
 ```
 sudo apt update
 ```
@@ -261,11 +255,50 @@ Check which versions of R are available now.
 ```
 apt-cache policy r-base-core
 ```
+Version 3.4.4 is available
 
 Install the R binaries:
 ```
 sudo apt install r-base
 ```
 
+Install caret:
+```
+sudo apt-get install r-cran-caret r-cran-domc r-cran-rcolorbrewer
+```
 
-R on ubuntu server
+Start R
+```
+R
+```
+
+Install **corrplot** by pasting the following command at the R command prompt:
+
+```r
+install.packages("corrplot")
+```
+Allow R to create a personal library for you.
+
+Then quit R
+
+```r
+q()
+```
+
+## Create new machine image from container
+<div class="figure" style="text-align: center">
+<img src="images/sessions_ubuntu_server_base.png" alt="Customized ubuntu server container listed under Sessions" width="50%" />
+<p class="caption">(\#fig:customSessionsUbuntuServerBase)Customized ubuntu server container listed under Sessions</p>
+</div>
+
+<div class="figure" style="text-align: center">
+<img src="images/ubuntu_server_base_session_context_menu.png" alt="Context menu for container" width="50%" />
+<p class="caption">(\#fig:customContainerContextMenu)Context menu for container</p>
+</div>
+
+<div class="figure" style="text-align: center">
+<img src="images/create_machine_image.tiff" alt="Creating a new machine image from a running container." width="100%" />
+<p class="caption">(\#fig:customCreateMachineImage)Creating a new machine image from a running container.</p>
+</div>
+
+Start up new container to test!
