@@ -144,11 +144,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.1" data-path="run-analysis.html"><a href="run-analysis.html#example-problem"><i class="fa fa-check"></i><b>6.1</b> Example problem</a></li>
 <li class="chapter" data-level="6.2" data-path="run-analysis.html"><a href="run-analysis.html#launch-machine-1"><i class="fa fa-check"></i><b>6.2</b> Launch machine</a></li>
 <li class="chapter" data-level="6.3" data-path="run-analysis.html"><a href="run-analysis.html#copy-script-to-container"><i class="fa fa-check"></i><b>6.3</b> Copy script to container</a></li>
-<li class="chapter" data-level="6.4" data-path="run-analysis.html"><a href="run-analysis.html#retrieve-results-files"><i class="fa fa-check"></i><b>6.4</b> Retrieve results files</a></li>
+<li class="chapter" data-level="6.4" data-path="run-analysis.html"><a href="run-analysis.html#run-script"><i class="fa fa-check"></i><b>6.4</b> Run script</a></li>
+<li class="chapter" data-level="6.5" data-path="run-analysis.html"><a href="run-analysis.html#retrieve-results-files"><i class="fa fa-check"></i><b>6.5</b> Retrieve results files</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>7</b> Collaboration</a><ul>
-<li class="chapter" data-level="7.1" data-path="collaboration.html"><a href="collaboration.html#real-time-collaboration"><i class="fa fa-check"></i><b>7.1</b> Real time collaboration</a></li>
+<li class="chapter" data-level="7.1" data-path="collaboration.html"><a href="collaboration.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="collaboration.html"><a href="collaboration.html#sharing-images"><i class="fa fa-check"></i><b>7.2</b> Sharing images</a></li>
+<li class="chapter" data-level="7.3" data-path="collaboration.html"><a href="collaboration.html#sharing-formations-and-containers"><i class="fa fa-check"></i><b>7.3</b> Sharing formations and containers</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>8</b> Resources</a><ul>
 <li class="chapter" data-level="8.1" data-path="resources.html"><a href="resources.html#rosetta-hub-documentation"><i class="fa fa-check"></i><b>8.1</b> Rosetta Hub Documentation</a></li>
@@ -193,22 +195,64 @@ scp -i private-keys-m-cad2e4b8-770c-4574-b923-a3cfcece2da3-0.pem ~/git_repositor
 -->
 <div id="example-problem" class="section level2">
 <h2><span class="header-section-number">6.1</span> Example problem</h2>
-<p>The seeds data set <a href="https://archive.ics.uci.edu/ml/datasets/seeds" class="uri">https://archive.ics.uci.edu/ml/datasets/seeds</a> contains morphological measurements on the kernels of three varieties of wheat: Kama, Rosa and Canadian.</p>
+<p>The seeds data set <a href="https://archive.ics.uci.edu/ml/datasets/seeds" class="uri">https://archive.ics.uci.edu/ml/datasets/seeds</a> contains morphological measurements on the kernels of three varieties of wheat: Kama, Rosa and Canadian. In this example we will attempt identify the variety of kernel from its morphological measurements using a k-nearest neighbours classifier. The details of the data-set and analysis are not important, we’re simply using them to illustrate how to run a job in container.</p>
+<p>If you would like to take a look at the R script we will be using to run the analysis, you will find it on your workstation in the following location:</p>
+<pre><code>~/Course_Materials/scripts/knn_classification_wheat_seeds.R</code></pre>
 </div>
 <div id="launch-machine-1" class="section level2">
 <h2><span class="header-section-number">6.2</span> Launch machine</h2>
-<p>Start up a container from the machine image you created in the previous chapter.</p>
-<p>Get connection information. Right click on .. context menu</p>
+Start up a container from the machine image you created in the previous chapter. Right click on the icon for this image and select <strong>Launch</strong> from the menu that appears:
+<div class="figure" style="text-align: center"><span id="fig:analysisImageContextMenu"></span>
+<img src="images/CARET_machine_image_context_menu.png" alt="Image context menu" width="50%" />
+<p class="caption">
+Figure 6.1: Image context menu
+</p>
+</div>
+You will be presented with a dialog box that allows you to choose some runtime settings for your container. You may want to specify a label for easy identification.
+<div class="figure" style="text-align: center"><span id="fig:analysisContainerRuntimeSettings"></span>
+<img src="images/analysisLaunchMachine.png" alt="Container runtime parameters" width="100%" />
+<p class="caption">
+Figure 6.2: Container runtime parameters
+</p>
+</div>
+Once your container is running its icon will appear in the <strong>Sessions</strong> section of the Federation console with a green check mark in the top left corner. Right click on the icon to bring up a menu, then click <strong>Get Connectivity Info</strong>:
+<div class="figure" style="text-align: center"><span id="fig:analysisIconRunningContainer"></span>
+<img src="images/analysisSessionContextMenu.png" alt="Icon of running container with menu" width="50%" />
+<p class="caption">
+Figure 6.3: Icon of running container with menu
+</p>
+</div>
+The following connectivity information will be displayed. Download the <strong>ssh private keys</strong> as you will need them to connect to the container.
+<div class="figure" style="text-align: center"><span id="fig:analysisConnectivityInformation"></span>
+<img src="images/analysis_connectivity_information.png" alt="Container connectivity information" width="100%" />
+<p class="caption">
+Figure 6.4: Container connectivity information
+</p>
+</div>
 </div>
 <div id="copy-script-to-container" class="section level2">
 <h2><span class="header-section-number">6.3</span> Copy script to container</h2>
+<p>Secure copy the R script to the container. Use a the syntax below, but remember to change the ssh private key filename and hostname to correct values for your container (refer to connectivity information obtained above):</p>
 <pre><code>scp -i private-keys-m-cad2e4b8-770c-4574-b923-a3cfcece2da3-0.pem ~/Course_Materials/scripts/knn_classification_wheat_seeds.R ubuntu@vm-34-245-95-14.rosettavm.com:/home/ubuntu/</code></pre>
-<p>introduce error into script and see if it triggers appropriate e-mail</p>
+</div>
+<div id="run-script" class="section level2">
+<h2><span class="header-section-number">6.4</span> Run script</h2>
+<p>Create a results directory where your S3 bucket is mounted:</p>
+<pre><code>mkdir /mnt/s3/results</code></pre>
+<p>Make the script executable:</p>
+<pre><code>chmod 755 knn_classification_wheat_seeds.R</code></pre>
+<p>Run script:</p>
+<pre><code>./knn_classification_wheat_seeds.R</code></pre>
+<p>You should receive an e-mail notification when execution of the script finishes.</p>
+<p>You could try introducing syntax errors into the R script to test the error handling.</p>
 </div>
 <div id="retrieve-results-files" class="section level2">
-<h2><span class="header-section-number">6.4</span> Retrieve results files</h2>
+<h2><span class="header-section-number">6.5</span> Retrieve results files</h2>
+<p>If the container is running you can copy the directory of results files to your local workstation using scp, e.g.:</p>
 <pre><code>scp -i private-keys-m-cad2e4b8-770c-4574-b923-a3cfcece2da3-0.pem -r ubuntu@vm-34-245-95-14.rosettavm.com:/mnt/s3/results .</code></pre>
+<p>You can also copy the results files directly from your S3 bucket using the aws command line tools:</p>
 <pre><code>aws s3 cp --recursive s3://com-rosettahub-course-bioinfo1.cam/results results</code></pre>
+<p>A third option would be to download your files directly from your S3 bucket using the AWS web interface.</p>
 
 </div>
 </div>

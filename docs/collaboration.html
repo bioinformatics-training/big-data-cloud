@@ -144,11 +144,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.1" data-path="run-analysis.html"><a href="run-analysis.html#example-problem"><i class="fa fa-check"></i><b>6.1</b> Example problem</a></li>
 <li class="chapter" data-level="6.2" data-path="run-analysis.html"><a href="run-analysis.html#launch-machine-1"><i class="fa fa-check"></i><b>6.2</b> Launch machine</a></li>
 <li class="chapter" data-level="6.3" data-path="run-analysis.html"><a href="run-analysis.html#copy-script-to-container"><i class="fa fa-check"></i><b>6.3</b> Copy script to container</a></li>
-<li class="chapter" data-level="6.4" data-path="run-analysis.html"><a href="run-analysis.html#retrieve-results-files"><i class="fa fa-check"></i><b>6.4</b> Retrieve results files</a></li>
+<li class="chapter" data-level="6.4" data-path="run-analysis.html"><a href="run-analysis.html#run-script"><i class="fa fa-check"></i><b>6.4</b> Run script</a></li>
+<li class="chapter" data-level="6.5" data-path="run-analysis.html"><a href="run-analysis.html#retrieve-results-files"><i class="fa fa-check"></i><b>6.5</b> Retrieve results files</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>7</b> Collaboration</a><ul>
-<li class="chapter" data-level="7.1" data-path="collaboration.html"><a href="collaboration.html#real-time-collaboration"><i class="fa fa-check"></i><b>7.1</b> Real time collaboration</a></li>
+<li class="chapter" data-level="7.1" data-path="collaboration.html"><a href="collaboration.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="collaboration.html"><a href="collaboration.html#sharing-images"><i class="fa fa-check"></i><b>7.2</b> Sharing images</a></li>
+<li class="chapter" data-level="7.3" data-path="collaboration.html"><a href="collaboration.html#sharing-formations-and-containers"><i class="fa fa-check"></i><b>7.3</b> Sharing formations and containers</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>8</b> Resources</a><ul>
 <li class="chapter" data-level="8.1" data-path="resources.html"><a href="resources.html#rosetta-hub-documentation"><i class="fa fa-check"></i><b>8.1</b> Rosetta Hub Documentation</a></li>
@@ -182,11 +184,52 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="collaboration" class="section level1">
 <h1><span class="header-section-number">7</span> Collaboration</h1>
-<div id="real-time-collaboration" class="section level2">
-<h2><span class="header-section-number">7.1</span> Real time collaboration</h2>
+<div id="introduction-1" class="section level2">
+<h2><span class="header-section-number">7.1</span> Introduction</h2>
+<p>In chapter <a href="containers.html#containers">3</a> we saw how RosettaHUB’s managed images facilitate real time collaboration. We have also seen how AWS Identity and Access Management (IAM) can be used to share storage in a controlled and secure manner (chapter <a href="storage.html#storage">4</a>). In this chapter we will look at sharing images, formations and containers.</p>
 </div>
 <div id="sharing-images" class="section level2">
 <h2><span class="header-section-number">7.2</span> Sharing images</h2>
+Sharing images is easy. Right click on the machine image you would like to share, and select <strong>share</strong> from the pop-up menu:
+<div class="figure" style="text-align: center"><span id="fig:caretImageContextMenu"></span>
+<img src="images/CARET_machine_image_context_menu.png" alt="Image context menu" width="70%" />
+<p class="caption">
+Figure 7.1: Image context menu
+</p>
+</div>
+Enter the user name of the person with whom you would like to share the image:
+<div class="figure" style="text-align: center"><span id="fig:shareImage1"></span>
+<img src="images/share_image1.png" alt="Share image: add user" width="100%" />
+<p class="caption">
+Figure 7.2: Share image: add user
+</p>
+</div>
+After clicking <strong>share</strong> the username will be added to the list of users with access to your image.
+<div class="figure" style="text-align: center"><span id="fig:shareImage2"></span>
+<img src="images/share_image2.png" alt="Share image: user added" width="100%" />
+<p class="caption">
+Figure 7.3: Share image: user added
+</p>
+</div>
+This is the appearance of the icon for the image on the owners console (note the grey symbol denoting sharing):
+<div class="figure" style="text-align: center"><span id="fig:sharedImageOwnersConsole"></span>
+<img src="images/shared_image_owners_console.png" alt="Appearance of shared image icon on the owners console." width="50%" />
+<p class="caption">
+Figure 7.4: Appearance of shared image icon on the owners console.
+</p>
+</div>
+Here is the icon for the same image on the console of a user who has been granted access:
+<div class="figure" style="text-align: center"><span id="fig:sharedImageOthersConsole"></span>
+<img src="images/shared_image_on_other_users_console.png" alt="Appearance of shared image on the other user's console." width="100%" />
+<p class="caption">
+Figure 7.5: Appearance of shared image on the other user’s console.
+</p>
+</div>
+<p>Try sharing the CARET machine image you created with your neighbour.</p>
+</div>
+<div id="sharing-formations-and-containers" class="section level2">
+<h2><span class="header-section-number">7.3</span> Sharing formations and containers</h2>
+<p>Formations and containers (sessions in RosettaHUB terminology) can be shared in the same way as images. Try sharing a formation or container with your neighbour.</p>
 
 </div>
 </div>
