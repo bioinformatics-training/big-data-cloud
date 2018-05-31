@@ -26,33 +26,28 @@ We can customize any of the managed or semi-managed images provided on RosettaHU
 
 In Docker terminology, we add a  [layer](https://docs.docker.com/glossary/?term=layer) to the base image.
 
-For some projects we do not want the overhead of a graphical user interface and do not require all of the tools provided by the managed
+For some tasks we want a rich GUI with comprehensive tools for interactive analysis. In other projects, where we want to process data in batch mode, a graphical user interface represents unnecessary overhead. 
 
-For some tasks we want a rich GUI with comprehensive tools for interactive analysis. In other projects we may want to process data in batch mode and thena  more minimalist container is more appropriate - faster to start, streamlined (no overhead of GUI)
+In this chapter we are going to create an image for performing machine learning using R. We will start with a base ubuntu server image which doesn't have a desktop environment or many tools for data analysis. On top of this image we will install R, and the [CARET](https://topepo.github.io/caret/) package for machine learning. We will also mount the S3 bucket that contains our data, and will be used to store the results of our analyses. 
 
-
-
-To create a derived managed image, users have to launch a RosettaHUB machine then create an image from that machine on RosettaHUB. Managed images are configured with Docker containers. Docker containers contain applications for data science such as Pyhton, R, Rstudio, Scala, Sql and notebooks such as Jupyter and Zeppelin.
-
-We can create derived images from any of these baseline images.
-
-Explain example - R for machine learning
 
 ## Launch machine
 On Federation Console, go to Images section where you will see the following list:
 
-Right click on Ubuntu Server 16.04 LTS and select 'Launch' from the context menu.
+Right click on Ubuntu Server 16.04 LTS and select 'Launch' from the menu that appears.
 
 <div class="figure" style="text-align: center">
 <img src="images/image_list_icons.png" alt="Managed images available" width="100%" />
 <p class="caption">(\#fig:customManagedImages)Managed images available</p>
 </div>
 
+A dialog for configuring the runtime settings of the container will appear. Enter "ubuntu server base" into the **Label** field and set the **Root Volume Size (Gb)** to 15:
 <div class="figure" style="text-align: center">
 <img src="images/launch_ubuntu_server_2.png" alt="Launch ubuntu server" width="100%" />
 <p class="caption">(\#fig:customLaunchUbuntuServer)Launch ubuntu server</p>
 </div>
 
+Once the container is running it will appear in the **Sessions** section of the Federation console. A green tick in the top left corner of the icon indicates that it is ready for use:
 <div class="figure" style="text-align: center">
 <img src="images/sessions_formations_ubuntu_server_base.png" alt="Ubuntu server container is listed under formations and sessions" width="100%" />
 <p class="caption">(\#fig:customSessionsFormationsUbuntuServerBase)Ubuntu server container is listed under formations and sessions</p>
@@ -60,26 +55,29 @@ Right click on Ubuntu Server 16.04 LTS and select 'Launch' from the context menu
 
 
 ## Connect to machine
+Right click on the icon for the container and select **Get Connectivity Information** from the menu that appears:
 <div class="figure" style="text-align: center">
 <img src="images/ubuntu_server_base_session_context_menu.png" alt="Context menu for ubuntu server container" width="50%" />
 <p class="caption">(\#fig:customUbuntuServerBaseContextMenu)Context menu for ubuntu server container</p>
 </div>
 
+Connectivity information will be displayed in a new tab of your web browser:
 <div class="figure" style="text-align: center">
 <img src="images/ubuntu_server_base_connectivity_information.png" alt="Connectivity information for ubuntu server container" width="100%" />
 <p class="caption">(\#fig:customUbuntuServerBaseConnectivityInformation)Connectivity information for ubuntu server container</p>
 </div>
 
-
+Download the ssh private keys to your workstation. If you inspect the permissions of the key file you will find that it is world writable:
 ```
 ls -la private-keys-m-e1f0bf55-815b-439b-afae-a157d59facbe-0.pem 
--rw-rw-rw-@ 1 matt  staff  1674 29 May 20:37 private-keys-m-e1f0bf55-815b-439b-afae-a157d59facbe-0.pem
 ```
 
+Change the permissions on the key file so that only you the owner have read and write access. Use the following syntax, but remember to use the file name of your own key:
 ```
 chmod 600 private-keys-m-e1f0bf55-815b-439b-afae-a157d59facbe-0.pem
 ```
 
+Then you can use the ssh command provided in the **Connectivity Information** to connect to your container:
 ```
 ssh ubuntu@vm-34-245-226-49.rosettavm.com -i private-keys-m-e1f0bf55-815b-439b-afae-a157d59facbe-0.pem
 ```
@@ -99,17 +97,17 @@ Find the **Access Key ID** and **Secret Access Key** for your default iamuser. T
 * **Access Key ID:** AKIAIOSFODNN7EXAMPLE
 * **Secret Access Key:** UYPg0R42LkqfVbp2YKre/Rz6FbepX/EXAMPLEKEY
 
-Create the /etc/passwd-s3fs file
+Create the /etc/passwd-s3fs file, e.g.:
 ```
 echo AKIAIOSFODNN7EXAMPLE:UYPg0R42LkqfVbp2YKre/Rz6FbepX/EXAMPLEKEY | sudo tee --append /etc/passwd-s3fs
 ```
 
-Set appropriate permissions
+Set appropriate permissions on this file:
 ```
 sudo chmod 640 /etc/passwd-s3fs
 ```
 
-Create a mount point and mount S3 bucket
+Create a mount point and mount S3 bucket (change "com-rosettahub-course-bioinfo1.cam" to the name of your own bucket):
 ```
 sudo mkdir -p /mnt/s3
 sudo s3fs com-rosettahub-course-bioinfo1.cam /mnt/s3 -o passwd_file=/etc/passwd-s3fs
@@ -127,24 +125,24 @@ echo "s3fs#com-rosettahub-course-bioinfo1.cam /mnt/s3 fuse _netdev,allow_other,u
 
 ## Configure server to send e-mail
 
-secure simple mail transfer protocol        
+We will use the secure simple mail transfer protocol (SSMTP)     
 
 Update local package cache
 ```
 sudo apt-get update
 ```
 
-Install the ssmtp package
+Install the **ssmtp** package
 ```
 sudo apt-get install ssmtp
 ```
 
-Setup ssmtp by editing the configuration file
+Setup **ssmtp** by editing the configuration file
 ```
 sudo nano /etc/ssmtp/ssmtp.conf
 ```
 
-Adjust and add as necessary to match the following parameters
+Modidy as necessary to match the following parameters.
 Change "MyEmailAddress" and "MyPassword" to your own. 
 ```
 # Config file for sSMTP sendmail
@@ -174,12 +172,12 @@ hostname=myHostname
 FromLineOverride=YES
 ```
 
-Create aliases for local usernames (optional) by editing the  /etc/ssmtp/revaliases file
+Create aliases for local usernames by editing the /etc/ssmtp/revaliases file. Open the file for editing:
 ```
 sudo nano /etc/ssmtp/revaliases
 ```
 
-And add into it the desired translation which in our Gmail examples case will be
+Insert the following translations:
 ```
 root:username@gmail.com:smtp.gmail.com:587
 mainuser:username@gmail.com:smtp.gmail.com:587
@@ -187,11 +185,12 @@ mainuser:username@gmail.com:smtp.gmail.com:587
 
 From now on, the machine will Email when requested through command line or script.
 
-Check setup by creating a script to send an e-mail to yourself
+Check setup by creating a script to send an e-mail to yourself.
 ```
 nano send-alert.sh
 ```
 
+Create your own script based on this template:
 ```
 #!/bin/sh
  
@@ -223,7 +222,7 @@ Run script
 
 ## Install R
 
-Check which version of R is available in the ubuntu repository
+Check which version of R is available in the ubuntu repository:
 ```
 apt-cache policy r-base-core
 ```
@@ -235,9 +234,7 @@ Add the CRAN repository to the list of sources:
 echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | sudo tee --append /etc/apt/sources.list
 ```
 
-
 Add the key ID for the CRAN network:
-Ubuntu GPG key:
 ```
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 ```
@@ -258,7 +255,7 @@ Install the R binaries:
 sudo apt install r-base
 ```
 
-Install caret:
+Install caret and other required packages:
 ```
 sudo apt-get install r-cran-caret r-cran-domc r-cran-rcolorbrewer r-cran-e1071
 ```
@@ -282,19 +279,22 @@ q()
 ```
 
 ## Create new machine image from container
+Your container is listed under **Sessions** on the Federation Console:
 <div class="figure" style="text-align: center">
 <img src="images/sessions_ubuntu_server_base.png" alt="Customized ubuntu server container listed under Sessions" width="50%" />
 <p class="caption">(\#fig:customSessionsUbuntuServerBase)Customized ubuntu server container listed under Sessions</p>
 </div>
 
+Right click on it to bring up a menu, and then select **Create Machine Image**:
 <div class="figure" style="text-align: center">
 <img src="images/ubuntu_server_base_session_context_menu.png" alt="Context menu for container" width="50%" />
 <p class="caption">(\#fig:customContainerContextMenu)Context menu for container</p>
 </div>
 
+You will be presented with the following dialog box. In the **Label** field enter "CARET" and your username (you will share this machine image in a later exercise, so it is helpful if it has your name on it). Set the **Root Volume Size in GB** to 15. Also tick the checkbox to **Shutdown On Success**:
 <div class="figure" style="text-align: center">
 <img src="images/create_machine_image.tiff" alt="Creating a new machine image from a running container." width="100%" />
 <p class="caption">(\#fig:customCreateMachineImage)Creating a new machine image from a running container.</p>
 </div>
 
-Start up new container to test!
+Start up new container to test! When you have finished testing your container you can shut it down to conserve AWS credits.

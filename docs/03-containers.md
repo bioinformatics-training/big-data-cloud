@@ -31,3 +31,41 @@ RosettaHUB provides two types of [images](https://docs.rosettahub.com/display/ma
 
 
 ## Launch a container
+
+
+Available machine images are listed on the Federation Console. We will run a **CPU-Docker RH Workbench**. Right click on the icon for this image and select **Launch** from the menu:
+<div class="figure" style="text-align: center">
+<img src="images/RH_context_launch.png" alt="Menu for managed image" width="70%" />
+<p class="caption">(\#fig:rhImageMenu)Menu for managed image</p>
+</div>
+
+The following dialog will appear. We will accept the default settings.
+<div class="figure" style="text-align: center">
+<img src="images/RH_launch.png" alt="Machine image launch dialog." width="100%" />
+<p class="caption">(\#fig:rhLaunch)Machine image launch dialog.</p>
+</div>
+
+An icon for the container will appear in the **Sessions** section of the Federation Console. When the container is ready for use a green tick will appear in the top left corner of the icon. Right clicking on the icon will display a menu from which you should select **Get Connectivity Info**. 
+<div class="figure" style="text-align: center">
+<img src="images/RH_container_context_menu.png" alt="Container menu" width="60%" />
+<p class="caption">(\#fig:rhContainerMenu)Container menu</p>
+</div>
+
+A new tab will open displaying connection options for the container:
+<div class="figure" style="text-align: center">
+<img src="images/RH_connectivity_information.png" alt="Container connectivity information" width="100%" />
+<p class="caption">(\#fig:rhConnInfo)Container connectivity information</p>
+</div>
+
+Try some of the above methods to connect to the container.
+
+Return to the Federation Console and right click on the container icon once more. This time select **Connect**. You will be taken to the workbench interface of the container:
+<div class="figure" style="text-align: center">
+<img src="images/RH_workbench.png" alt="RosettaHUB container workbench" width="100%" />
+<p class="caption">(\#fig:rhWorkbench)RosettaHUB container workbench</p>
+</div>
+
+Explore the tools available on the workbench. When you have finished with the container, shut it down to conserve your AWS credits.
+
+
+

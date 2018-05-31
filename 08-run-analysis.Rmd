@@ -10,7 +10,7 @@ scp -i private-keys-m-cad2e4b8-770c-4574-b923-a3cfcece2da3-0.pem ~/git_repositor
 -->
 
 ## Example problem
-The seeds data set [https://archive.ics.uci.edu/ml/datasets/seeds](https://archive.ics.uci.edu/ml/datasets/seeds) contains morphological measurements on the kernels of three varieties of wheat: Kama, Rosa and Canadian. In this example we will attempt identify the variety of kernel from its morphological measurements using a k-nearest neighbours classifier. The details of the data-set and analysis are not important, we're simply using them to illustrate how to run a job in container. 
+The seeds data set [https://archive.ics.uci.edu/ml/datasets/seeds](https://archive.ics.uci.edu/ml/datasets/seeds) contains morphological measurements on the kernels of three varieties of wheat: Kama, Rosa and Canadian. In this example we will attempt identify the variety of kernel from its morphological measurements using a k-nearest neighbours classifier. The details of the data-set and analysis are not important, we're simply using them to illustrate how to run a job in a container. 
 
 If you would like to take a look at the R script we will be using to run the analysis, you will find it on your workstation in the following location:
 ```
